@@ -1,0 +1,18 @@
+.navbar-logo {
+    height: 55px;          /* Forces a standard, professional corporate navbar height */
+    width: auto;           /* Automatically keeps the correct aspect ratio so it doesn't warp */
+    object-fit: contain;   /* Safeguards the image rendering bounds */
+    transition: height 0.3s ease; /* Smooth scaling animation when scrolling */
+}
+
+/* Optional: Make the logo a tiny bit smaller when the navbar shrinks on scroll */
+.navbar.scrolled .navbar-logo {
+    height: 45px;
+}
+
+/* Mobile responsive tweak so it doesn't crowd small screens */
+@media (max-width: 576px) {
+    .navbar-logo {
+        height: 42px;
+    }
+}
