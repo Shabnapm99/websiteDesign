@@ -1,290 +1,293 @@
-        :root {
-            --primary-dark: #0f172a;
-            /* Deep Slate/Charcoal */
-            --accent-gold: #f59e0b;
-            /* Safety Amber/Gold */
-            --light-bg: #f8fafc;
-            /* Clean Off-white */
-            --text-muted: #64748b;
-        }
+/* --- Global Reset & Root Variables --- */
+:root {
+    --navy: #0B2545;
+    --steel-blue: #134074;
+    --light-blue: #8DA9C4;
+    --ice-blue: #EEF4F8;
+    --dark-charcoal: #1A1A1A;
+    --transition-speed: 0.3s;
+}
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: #334155;
-            overflow-x: hidden;
-        }
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: #4A4A4A;
+    background-color: #FAFAFA;
+    overflow-x: hidden;
+}
 
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6,
-        .navbar-brand {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+}
 
-        /* --- Navbar --- */
-        .navbar {
-            transition: all 0.3s ease;
-            padding: 20px 0;
-        }
+/* --- Utilities --- */
+.text-navy { color: var(--navy); }
+.text-light-blue { color: var(--light-blue); }
+.bg-navy { background-color: var(--navy); }
+.font-xs { font-size: 0.75rem; }
+.tracking-wide { letter-spacing: 1px; }
+.tracking-wider { letter-spacing: 2px; }
 
-        .navbar.scrolled {
-            background-color: var(--primary-dark) !important;
-            padding: 10px 0;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
+/* --- Top Bar & Navbar Customizations --- */
+.top-bar {
+    background-color: #061629;
+    color: #D1DCE5;
+    font-size: 0.85rem;
+}
 
-        .nav-link {
-            color: #fff !important;
-            font-weight: 500;
-            margin: 0 10px;
-            transition: color 0.2s;
-        }
+.brand-logo {
+    height: 55px;
+    width: auto;
+    object-fit: contain;
+}
 
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--accent-gold) !important;
-        }
+.nav-link {
+    color: var(--navy) !important;
+    position: relative;
+    padding: 0.5rem 1rem;
+    transition: color var(--transition-speed);
+}
 
-        .btn-gold {
-            background-color: var(--accent-gold)!important;
-            color: var(--primary-dark) !important;
-            font-weight: 600;
-            border: none;
-            transition: transform 0.2s, background-color 0.2s;
-        }
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--steel-blue);
+    transition: all var(--transition-speed);
+    transform: translateX(-50%);
+}
 
-        .btn-gold:hover {
-            background-color: #d97706;
-            transform: translateY(-2px);
-        }
+.nav-link:hover::after, .nav-link.active::after {
+    width: 80%;
+}
 
-        /* --- Hero Section --- */
-        .hero-section {
-            height: 100vh;
-            min-height: 600px;
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)),
-                url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            color: #fff;
-        }
+.btn-navy {
+    background-color: var(--navy);
+    border: 1px solid var(--navy);
+    color: #fff !important;
+    border-radius: 4px;
+    transition: all var(--transition-speed);
+}
 
-        .hero-tagline {
-            font-size: 3.5rem;
-            letter-spacing: -1px;
-            line-height: 1.2;
-        }
+.btn-navy:hover {
+    background-color: var(--steel-blue);
+    border-color: var(--steel-blue);
+    transform: translateY(-1px);
+}
 
-        /* --- Trust Bar --- */
-        .trust-bar {
-            background-color: #fff;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.05);
-            margin-top: -50px;
-            border-radius: 8px;
-            position: relative;
-            z-index: 10;
-            padding: 30px;
-        }
+.btn-primary {
+    background-color: var(--steel-blue);
+    border-color: var(--steel-blue);
+}
 
-        .client-logo-placeholder {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            color: #94a3b8;
-            text-align: center;
-            font-size: 1.1rem;
-            letter-spacing: 1px;
-        }
+.btn-primary:hover {
+    background-color: var(--navy);
+    border-color: var(--navy);
+}
 
-        /* --- Services --- */
-        .section-padding {
-            padding: 100px 0;
-        }
+/* --- Hero Carousel & Custom Animations --- */
+.carousel-item {
+    height: 80vh;
+    min-height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
-        .section-title {
-            position: relative;
-            padding-bottom: 20px;
-            margin-bottom: 50px;
-            color: var(--primary-dark);
-        }
+.carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+}
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background-color: var(--accent-gold);
-        }
+/* Slide Entrance Animations */
+.carousel-item.active .animate-fadeInDown {
+    animation: fadeInDown 1s both;
+}
+.carousel-item.active .animate-fadeInLeft {
+    animation: fadeInLeft 1s both 0.2s;
+}
+.carousel-item.active .animate-fadeInRight {
+    animation: fadeInRight 1s both 0.4s;
+}
+.carousel-item.active .animate-zoomIn {
+    animation: zoomIn 0.8s both 0.6s;
+}
 
-        .section-title.center::after {
-            left: 50%;
-            transform: translateX(-50%);
-        }
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+@keyframes zoomIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
 
-        .service-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
-            border: 1px solid #f1f5f9;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
+/* --- Section Formatting --- */
+.heading-line {
+    width: 60px;
+    height: 3px;
+    background-color: var(--steel-blue);
+    margin-top: 15px;
+}
 
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            border-color: var(--accent-gold);
-        }
+/* About Section Visual Layout */
+.about-img-wrapper {
+    position: relative;
+}
 
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 25px;
-            display: inline-block;
-        }
+.experience-badge {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    z-index: 2;
+    min-width: 140px;
+    border-radius: 4px;
+}
 
-        .service-card:hover .service-icon {
-            color: var(--accent-gold);
-        }
+/* --- Division Cards & Interactive Elements --- */
 
-        /* --- Stats Bar --- */
-        .stats-section {
-            background-color: var(--primary-dark);
-            color: #fff;
-            padding: 80px 0;
-        }
+.division-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
-        .stat-number {
-            font-size: 3rem;
-            color: var(--accent-gold);
-            font-weight: 700;
-        }
+.division-card .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Keeps the headings locked at the same line height */
+}
+/* .card-img-top-wrap {
+    overflow: hidden;
+} */
 
-        /* --- Project Grid Filter --- */
-        .filter-btn {
-            background: transparent;
-            border: 1px solid #cbd5e1;
-            color: var(--primary-dark);
-            padding: 8px 24px;
-            border-radius: 30px;
-            font-weight: 500;
-            margin: 5px;
-            transition: all 0.2s;
-        }
+.card-img-top-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Force a strict 16:9 Aspect Ratio box */
+    overflow: visible;
+    background-color: #0b2545; /* Clean fallback background color */
+}
 
-        .filter-btn.active,
-        .filter-btn:hover {
-            background-color: var(--primary-dark);
-            color: #fff;
-            border-color: var(--primary-dark);
-        }
+.card-img-top-wrap img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This crops the portrait image perfectly without stretching it */
+    object-position: center;
+    transition: transform 0.6s ease;
+}
 
-        .project-card {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 30px;
-            display: block;
-        }
+/* .card-img-top-wrap img {
+    transition: transform 0.6s ease;
+} */
 
-        .project-img {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
+.division-card:hover .card-img-top-wrap img {
+    transform: scale(1.08);
+}
 
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.4));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 30px;
-            color: #fff;
-        }
+.div-icon {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #0B2545; /* Theme Navy */
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border: 3px solid #fff;
+    z-index: 10; /* Keeps it layered cleanly over everything */
+}
 
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
+/* .div-icon {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55px;
+    height: 55px;
+    background-color: var(--navy);
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    border: 3px solid #fff;
+} */
 
-        .project-card:hover .project-img {
-            transform: scale(1.08);
-        }
+.transition-up {
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
 
-        /* --- Contact Form --- */
-        .contact-section {
-            background-color: var(--light-bg);
-        }
+.transition-up:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.1) !important;
+}
 
-        .form-control,
-        .form-select {
-            padding: 12px 18px;
-            border-radius: 6px;
-            border: 1px solid #cbd5e1;
-        }
+/* --- Corporate Client Grid Styling --- */
+.abstract-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    opacity: 0.04;
+    background-image: linear-gradient(45deg, #fff 25%, transparent 25%), 
+                      linear-gradient(-45deg, #fff 25%, transparent 25%);
+    background-size: 40px 40px;
+}
 
-        .form-control:focus,
-        .form-select:focus {
-            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
-            border-color: var(--accent-gold);
-        }
+.relative-content {
+    position: relative;
+    z-index: 1;
+}
 
-        /* --- Footer --- */
-        footer {
-            background-color: #0b0f19;
-            color: #94a3b8;
-            padding: 60px 0 30px 0;
-            font-size: 0.95rem;
-        }
+.client-box {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-weight: 500;
+    font-size: 0.95rem;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed);
+}
 
-        footer h5 {
-            color: #fff;
-            margin-bottom: 25px;
-        }
+.client-box:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--light-blue);
+    color: #fff;
+}
 
-        footer a {
-            color: #94a3b8;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
+/* --- Footer Configuration --- */
+.bg-dark {
+    background-color: #0E1318 !important;
+}
 
-        footer a:hover {
-            color: var(--accent-gold);
-        }
+.text-gray {
+    color: #A0AAB2;
+}
 
-
-        .navbar-logo {
-            height: 55px;
-            /* Forces a standard, professional corporate navbar height */
-            width: auto;
-            /* Automatically keeps the correct aspect ratio so it doesn't warp */
-            object-fit: contain;
-            /* Safeguards the image rendering bounds */
-            transition: height 0.3s ease;
-            /* Smooth scaling animation when scrolling */
-        }
-
-        /* Optional: Make the logo a tiny bit smaller when the navbar shrinks on scroll */
-        .navbar.scrolled .navbar-logo {
-            height: 45px;
-        }
-
-        /* Mobile responsive tweak so it doesn't crowd small screens */
-        @media (max-width: 576px) {
-            .navbar-logo {
-                height: 42px;
-            }
-        }
+.filter-brightness {
+    filter: brightness(0) invert(1);
+}
