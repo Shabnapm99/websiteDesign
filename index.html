@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Adliya Group | Grade One Electrical & Civil Contractor</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #0f172a; /* Deep Slate/Charcoal */
+            --accent-gold: #f59e0b;  /* Safety Amber/Gold */
+            --light-bg: #f8fafc;     /* Clean Off-white */
+            --text-muted: #64748b;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #334155;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6, .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 20px 0;
+        }
+        .navbar.scrolled {
+            background-color: var(--primary-dark) !important;
+            padding: 10px 0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-gold) !important;
+        }
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark) !important;
+            font-weight: 600;
+            border: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn-gold:hover {
+            background-color: #d97706;
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero Section --- */
+        .hero-section {
+            height: 100vh;
+            min-height: 600px;
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+        .hero-tagline {
+            font-size: 3.5rem;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        /* --- Trust Bar --- */
+        .trust-bar {
+            background-color: #fff;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+            margin-top: -50px;
+            border-radius: 8px;
+            position: relative;
+            z-index: 10;
+            padding: 30px;
+        }
+        .client-logo-placeholder {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #94a3b8;
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- Services --- */
+        .section-padding {
+            padding: 100px 0;
+        }
+        .section-title {
+            position: relative;
+            padding-bottom: 20px;
+            margin-bottom: 50px;
+            color: var(--primary-dark);
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-gold);
+        }
+        .section-title.center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .service-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            border: 1px solid #f1f5f9;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border-color: var(--accent-gold);
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+        .service-card:hover .service-icon {
+            color: var(--accent-gold);
+        }
+
+        /* --- Stats Bar --- */
+        .stats-section {
+            background-color: var(--primary-dark);
+            color: #fff;
+            padding: 80px 0;
+        }
+        .stat-number {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        /* --- Project Grid Filter --- */
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            color: var(--primary-dark);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-weight: 500;
+            margin: 5px;
+            transition: all 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-dark);
+            color: #fff;
+            border-color: var(--primary-dark);
+        }
+        .project-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            display: block;
+        }
+        .project-img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .project-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.4));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: #fff;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .project-card:hover .project-img {
+            transform: scale(1.08);
+        }
+
+        /* --- Contact Form --- */
+        .contact-section {
+            background-color: var(--light-bg);
+        }
+        .form-control, .form-select {
+            padding: 12px 18px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+        }
+        .form-control:focus, .form-select:focus {
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+            border-color: var(--accent-gold);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #0b0f19;
+            color: #94a3b8;
+            padding: 60px 0 30px 0;
+            font-size: 0.95rem;
+        }
+        footer h5 {
+            color: #fff;
+            margin-bottom: 25px;
+        }
+        footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="100">
+
+    <!-- NAVIGATION -->
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark fixed-top bg-transparent">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <!-- Swap with dynamic logo asset asset later -->
+                <i class="fa-solid fa-building-shield text-warning me-2 fs-3"></i>
+                <div>
+                    <span class="d-block fs-5 mb-0 tracking-wide">AL ADLIYA</span>
+                    <small class="d-block text-muted style-text" style="font-size: 0.65rem; letter-spacing: 1px;">GROUP OF COMPANIES</small>
+                </div>
+            </a>
+            <button class="navbar-expand-toggle navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Capabilities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Inquiries</a></li>
+                    <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                        <a class="btn btn-gold px-4 py-2" href="#contact"><i class="fa-solid fa-file-signature me-2"></i>Tender Desk</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="hero" class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-8 col-lg-10">
+                    <span class="badge bg-warning text-dark mb-3 px-3 py-2 text-uppercase fw-bold tracking-wider">Grade One Contractor</span>
+                    <h1 class="hero-tagline fw-bold mb-4">Powering Infrastructure.<br>Building The Future.</h1>
+                    <p class="lead mb-5 text-light-50 max-w-2xl">Al Adliya Group is a premier Grade One Electrical and Civil Contracting firm serving government installations, defense units, and critical utility networks across the Kingdom of Bahrain.</p>
+                    <div class="d-sm-flex gap-3">
+                        <a href="#projects" class="btn btn-gold btn-lg px-4 mb-3 mb-sm-0">Our Project History</a>
+                        <a href="#services" class="btn btn-outline-light btn-lg px-4">Explore Core Divisions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- TRUST LOGO BAR -->
+    <div class="container">
+        <div class="trust-bar">
+            <p class="text-center text-uppercase fw-bold text-muted small mb-4 tracking-widest">Approved & Registered Partner To Capital Infrastructure</p>
+            <div class="row align-items-center justify-content-center g-4">
+                <div class="col-6 col-md-2 client-logo-placeholder">EWA Approved</div>
+                <div class="col-6 col-md-2 client-logo-placeholder">Ministry of Works</div>
+                <div class="col-6 col-md-2 client-logo-placeholder">Batelco</div>
+                <div class="col-6 col-md-2 client-logo-placeholder">BDF Network</div>
+                <div class="col-6 col-md-2 client-logo-placeholder">Interior Ministry</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT INTRO -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Decades of Structural Precision and Regulatory Alignment</h2>
+                    <p class="lead">We hold top-tier certification configurations, authorizing our engineering crews to handle delicate public system implementations.</p>
+                    <p>Operating out of the Kingdom of Bahrain, our core strength rests in executing complex multi-tier distribution frameworks. As specialized Measured Term contractors, we ensure industrial scale safety mechanisms and continuous regulatory synchronization across every single dynamic execution phase.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" alt="Engineers working" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIVISION SERVICES -->
+    <section id="services" class="section-padding bg-light">
+        <div class="container">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <h2 class="section-title center">Engineered Operational Core</h2>
+                <p class="text-muted">A structured grid highlighting our classification parameters and project frameworks.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <h4>Electrical Networks</h4>
+                        <p class="text-muted">Specialized 11KV substations operations, complex internal frameworks, distribution grid extensions, and integrated public area highway illumination arrays.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+                        <h4>Civil Construction</h4>
+                        <p class="text-muted">Comprehensive foundational structuring, military standard building developments, and robust framework modifications across highly demanding terrain requirements.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-trowel-bricks"></i></div>
+                        <h4>Measured Term Works</h4>
+                        <p class="text-muted">Continuous lifecycle monitoring, facility infrastructure extensions, structural retrofitting, and systemic facility upgrades aligned with municipal baselines.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS COUNTER -->
+    <section class="stats-section">
+        <div class="container text-center">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-number">1</div>
+                    <div class="small text-uppercase tracking-wider text-white-50">Contracting Grade</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-number">11KV</div>
+                    <div class="small text-uppercase tracking-wider text-white-50">Substation Mastery</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-number">100+</div>
+                    <div class="small text-uppercase tracking-wider text-white-50">Asset Inceptions</div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-number">24/7</div>
+                    <div class="small text-uppercase tracking-wider text-white-50">Utility Response</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORFTOLIO FEATURED WORKS -->
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <div class="d-md-flex justify-content-between align-items-end mb-5">
+                <div>
+                    <h2 class="section-title mb-md-0">National Infrastructure Portfolios</h2>
+                </div>
+                <div id="filter-container">
+                    <button class="filter-btn active" data-filter="all">All Subsections</button>
+                    <button class="filter-btn" data-filter="elec">Electrical Grid</button>
+                    <button class="filter-btn" data-filter="civil">Civil & Structural</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-md-6 col-lg-4 project-item elec">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=600&q=80" class="project-img" alt="Substation">
+                        <div class="project-overlay">
+                            <span class="text-warning small fw-bold text-uppercase">11KV Distribution Network</span>
+                            <h5 class="mb-0">EWA Substation Grid Linkups</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="col-md-6 col-lg-4 project-item civil">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=600&q=80" class="project-img" alt="Complex">
+                        <div class="project-overlay">
+                            <span class="text-warning small fw-bold text-uppercase">Civil Infrastructure</span>
+                            <h5 class="mb-0">Ministry Facility Frameworks</h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="col-md-6 col-lg-4 project-item elec">
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80" class="project-img" alt="Industrial Grid">
+                        <div class="project-overlay">
+                            <span class="text-warning small fw-bold text-uppercase">Electrical Infrastructure</span>
+                            <h5 class="mb-0">Batelco Link Protection Works</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- B2B CALL TO ACTION / FORM -->
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h2 class="section-title">Initiate B2B Tender Integration</h2>
+                    <p class="mb-4">Partner with Al Adliya Group on upcoming municipal projects, industrial electrical grid layouts, or specialized civilian maintenance work.</p>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-dark text-white rounded p-3 me-3"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <small class="d-block text-muted">Direct Business Line</small>
+                            <strong>+973 17703232</strong>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="bg-dark text-white rounded p-3 me-3"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <small class="d-block text-muted">Corporate Tender Channel</small>
+                            <strong>adliya@batelco.com.bh</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm p-4 p-md-5 bg-white rounded-3">
+                        <form id="tenderForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Corporate Entity Name</label>
+                                    <input type="text" class="form-control" required placeholder="e.g. Ministry / Corporate Body">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold">Point of Contact Email</label>
+                                    <input type="email" class="form-control" required placeholder="partner@domain.com">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Target Infrastructure Classification</label>
+                                    <select class="form-select" required>
+                                        <option value="" selected disabled>Select primary focus sector...</option>
+                                        <option value="electrical">11KV / Substation Grid Works</option>
+                                        <option value="civil">Civil Foundations & Frameworks</option>
+                                        <option value="term">Measured Term Multi-Year Maintenance</option>
+                                        <option value="other">General Procurement Inquiry</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold">Scope Summary Details</label>
+                                    <textarea class="form-control" rows="4" required placeholder="Outline tender deadlines, performance specifications or structural requirements..."></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-gold w-100 py-3 text-uppercase tracking-wider">Transmit To Operations Desk</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER TERMINAL -->
+    <footer>
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-5">
+                    <h5 class="text-warning">AL ADLIYA GROUP</h5>
+                    <p class="max-w-xs">Grade 1 Civil and Electrical Contractor specialized in public network development and security-cleared defense frameworks across Bahrain.</p>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <h5>Core Frameworks</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#services">Substation Architecture</a></li>
+                        <li class="mb-2"><a href="#services">Civil Engineering</a></li>
+                        <li class="mb-2"><a href="#services">Measured Term Operations</a></li>
+                        <li class="mb-2"><a href="#services">Highway Illumination</a></li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-4">
+                    <h5>Central Registry Hub</h5>
+                    <p class="mb-1 text-light-50">Al Adliya Building, Sitra Industrial Area,</p>
+                    <p class="text-light-50">Kingdom of Bahrain</p>
+                    <p class="mb-0">P.O. Box: 26522</p>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25">
+            <div class="d-md-flex justify-content-between align-items-center pt-3 small">
+                <p class="mb-0">&copy; 2026 Al Adliya Group of Companies. All Rights Reserved.</p>
+                <p class="mb-0 text-muted">Certified Regulatory Grade 1 Operations Hub.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Smooth scroll styling changes for modern fixed header
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Client-side filtering mechanism for construction grid portfolios
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectItems = document.querySelectorAll('.project-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Manage active styling state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const targetFilter = button.getAttribute('data-filter');
+
+                // Toggle visibility states cleanly
+                projectItems.forEach(item => {
+                    if (targetFilter === 'all' || item.classList.contains(targetFilter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Basic form intercept handler for presentation simulation
+        document.getElementById('tenderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your request data profile successfully validated. Engineering procurement hub will follow up directly.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
